@@ -1,32 +1,64 @@
-# Project Overview
-This repository contains a comprehensive analysis of loan distribution using Excel and Power BI Desktop. The project aims to provide insights into how loans are distributed among various demographics, illustrating trends and patterns in the data.
+# 📊 Finance Loan Distribution Analysis  
+*Mini Project – MS Excel & Power BI*
 
-# Data Cleaning
-Data cleaning is a critical step in data analysis. In this project, we performed several cleaning tasks including:
-- Removing duplicates
-- Handling missing values by using appropriate imputation techniques
-- Formatting inconsistencies were corrected to ensure data uniformity.
+---
 
-# Power BI Transformations
-Once the data was cleaned, it was imported into Power BI Desktop where various transformations were applied:
-- Merging data from different sources to create a unified dataset.
-- Creating calculated columns and measures to facilitate detailed analysis.
-- Utilizing Power Query for additional data transformation needs.
+## 📂 Data Source
+- Dataset collected from **Kaggle** in CSV format.  
+- Converted to **Excel** for cleaning and transformation.  
+- No duplicates found in `Customer ID` column.  
 
-# Visualizations
-The project includes various interactive visualizations that depict:
-- Loan distribution across different categories (e.g., income level, loan purpose).
-- Trends over time demonstrating how loan distributions have changed.
-- Comparison charts that visualize discrepancies in loan approvals among different demographics.
+---
 
-# Insights
-The analysis revealed several key insights:
-1. **Demographics**: Certain income groups were found to have higher loan approval rates.
-2. **Loan Purposes**: Most loans were distributed for home improvements followed by education.
-3. **Temporal Trends**: There has been a consistent increase in loan approvals year over year, suggesting a growing demand.
+## 🧹 Data Cleaning & Imputation
+### Categorical Imputation
+- Missing values in **Employment Status** filled using:  
+  `=IF(ISBLANK(), "Unknown", ())`
 
-# Recommendations
-Based on the visualizations and insights gained, the following recommendations are made:
-- Consider targeted marketing strategies for high-approval demographics to enhance loan uptake.
-- Develop specific loan packages catering to the most common loan purposes revealed in the analysis.
-- Continue to monitor loan distribution trends to adapt strategies accordingly, especially in times of economic changes.
+### Numerical Imputation
+- Missing values in **Annual Income**, **Credit Score**, **Loan Amount**, **Interest Rate**, **Loan Tenure**, and **DTI Ratio** imputed using averages grouped by **Education** and **Loan Purpose**:  
+  `=IF(ISBLANK(), AVERAGEIF(), ())`
+
+### Additional Columns
+- **Credit Status**:  
+  - `>= 750 → Excellent`  
+  - `>= 600 → Good`  
+  - `>= 450 → Average`  
+  - `< 450 → Bad`
+
+- **Approval Status** (based on DTI Ratio):  
+  - `>= 60 → Rejected`  
+  - `>= 25 → Need More Proof`  
+  - `<= 25 → Approved`
+
+- **Risk Factor**:  
+  - `Loan Default = 0 → No Risk`  
+  - `Loan Default > 0 → Risk`
+
+- **Customer City** and **Customer State** added for Power BI mapping.
+
+---
+
+## 🔢 Index Matching (Optional)
+- Implemented `INDEX(MODE(MATCH()))` formula to analyze gender distribution.  
+- Insight: **Female customers dominate loan uptake**, highlighting empowerment trends.
+
+---
+
+## ⚙️ Power BI Transformation
+### Power Query Editor
+- Converted **Loan Amount** & **Annual Income** to Fixed Decimal.  
+- Converted **Date** column to Date format.  
+
+### DAX & Measures
+- **Number of Customers**:  
+  ```DAX
+  Number Of Customers = COUNTA(finance_loan_default_dataset[Customer ID])
+  Total Loan Amount = SUM(finance_loan_default_dataset[Loan Amount])
+  Each Loan Disbursed YTD =
+CALCULATE(
+  SUM(finance_loan_default_dataset[Loan Amount]),
+  DATESYTD(CalendarTable[Date])
+)
+
+
