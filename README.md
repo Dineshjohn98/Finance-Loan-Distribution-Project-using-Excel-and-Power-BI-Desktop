@@ -61,4 +61,38 @@ CALCULATE(
   DATESYTD(CalendarTable[Date])
 )
 
+### 📈 Visualizations
+- Clustered Column Chart → Customers by Gender & Education
+- Pie Chart → Customers by Credit Status
+- Line Chart → Customers by Month
+- Map Visual → City-wise Loan Distribution
+- Funnel Chart → State-wise Accounts Enrolled
+- Tree Map → Annual Income vs Loan Purpose
+- Interactive Dashboard → Slicer-enabled dynamic exploration
+
+### 🔍 Insights
+- Female customers are the majority loan applicants.
+- Personal Loans dominate, contributing significantly to revenue due to higher interest rates.
+- Approval Rate: Most loans approved; <2% rejected due to high DTI Ratio.
+- Risk Factor:
+- ~75% customers show No Risk (timely repayment).
+- ~25% customers flagged as Risk (defaults present).
+
+### 📌 Recommendations
+- Recruit authorized personnel for collections.
+- Use tele-calling follow-ups as primary strategy.
+- Escalate to field visits only if customers remain unresponsive.
+- Ensure compliance with RBI guidelines during recovery processes.
+
+### 🛠️ Tools Used
+- MS Excel → Data Cleaning & Imputation
+- Power BI → Data Transformation, DAX, Visualizations, Dashboard
+
+### ✅ Conclusion
+This project demonstrates how Excel + Power BI can be leveraged for:
+- Cleaning and imputing financial datasets
+- Creating calculated columns and measures
+- Building interactive dashboards
+- Extracting actionable insights for loan distribution and risk management
+
 
